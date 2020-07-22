@@ -1,0 +1,12 @@
+{
+  "name": "websuperdda",
+  "displayName": "websuperdda",
+  "expo": {
+    "name": "websuperdda",
+    "slug": "websuperdda",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

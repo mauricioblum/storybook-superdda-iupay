@@ -2,23 +2,22 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Card } from "react-native-superdda-iupay";
+import { Card } from 'react-native-superdda-iupay';
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <View style={styles.app}>
       <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <Card
-        type="netflix"
-        dueDate="19 JUL"
-        isDue
-        cnpj="99.999.0001/99"
-        text="This is a sample text"
-        value={49.9}
-      />
-    </View>
+        <StatusBar style="auto" />
+        <Card
+          type="netflix"
+          dueDate="19 JUL"
+          isDue
+          cnpj="99.999.0001/99"
+          text="This is a sample text"
+          value={49.9}
+        />
+      </View>
     </View>
   );
 }

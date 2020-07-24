@@ -1,4 +1,4 @@
 {
   "presets": ["babel-preset-expo"],
-  "exclude": ["**/*.png", "**/*.gif", "**/*.jpg"]
+  "exclude": ["**/*.png", "**/*.gif", "**/*.jpg", "/node_modules/"]
 }

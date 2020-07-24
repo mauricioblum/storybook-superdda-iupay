@@ -15,6 +15,8 @@ import {
   CardValue,
   CurrencyText,
   ValueText,
+  BetweenRow,
+  PaidText,
 } from './styles';
 import NumberFormat from 'react-number-format';
 
@@ -36,6 +38,7 @@ export const NetflixCard: React.FC<CardProps> = ({
   text,
   barColor,
   isDue,
+  isPaid,
   containerStyle,
   onMailButtonPress,
 }) => {
@@ -48,7 +51,10 @@ export const NetflixCard: React.FC<CardProps> = ({
           <DueDateText isDue={isDue}>{dueDate}</DueDateText>
         </CardHeader>
         <CardBody>
-          {cnpj && <CnpjText>CNPJ: {cnpj}</CnpjText>}
+          <BetweenRow>
+            {cnpj && <CnpjText>CNPJ: {cnpj}</CnpjText>}
+            {isPaid === true && <PaidText>PAGO</PaidText>}
+          </BetweenRow>
           <CardText>{text}</CardText>
           {children}
         </CardBody>

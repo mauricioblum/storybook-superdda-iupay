@@ -26,11 +26,6 @@ import mailIcon from '../assets/images/mail.png';
 
 import type { CardProps } from '.';
 
-const logoStyle = {
-  width: 90,
-  height: 30,
-};
-
 export const DefaultCard: React.FC<CardProps> = ({
   children,
   value,
@@ -45,7 +40,16 @@ export const DefaultCard: React.FC<CardProps> = ({
   containerStyle,
   onMailButtonPress,
   logo,
+  imageWidth,
+  imageHeight
 }) => {
+
+  const logoStyle = {
+    width: imageWidth || 90,
+    height: imageHeight || 30,
+    resizeMode: 'contain',
+  };
+
   return (
     <Container style={containerStyle}>
       <Bar color={barColor} />
@@ -53,7 +57,7 @@ export const DefaultCard: React.FC<CardProps> = ({
         <CardHeader>
           <CardTitleContainer>
             {logo && (
-              <Logo style={logoStyle} source={{ uri: logo }} resizeMode="contain" />
+              <Logo style={logoStyle} source={{ uri: logo }} resizeMode="contain" resizeMethod="resize" />
             )}
             <CardTitle>{cardTitle}</CardTitle>
           </CardTitleContainer>

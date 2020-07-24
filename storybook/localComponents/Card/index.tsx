@@ -21,6 +21,8 @@ export interface CardProps {
   isPaid?: boolean;
   onMailButtonPress?(): void;
   lightBillFlagStatus?: 'green' | 'yellow' | 'red';
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 export const Card: React.FC<CardProps> = (props) => {

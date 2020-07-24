@@ -71,7 +71,8 @@ export const BetweenRow = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 7px;
+  margin-bottom: 2px;
+  min-height: 16px;
 `;
 
 export const CnpjText = styled.Text`

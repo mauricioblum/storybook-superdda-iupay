@@ -39,12 +39,14 @@
     "react/style-prop-object": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-filename-extension": [1, {"extensions": [".tsx"]}],
+    "react/jsx-filename-extension": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
+      "ignorePackages",
       {
-        "allowExpressions": true
+        "allowExpressions": true,
+        "js": true
       }
     ],
     "import/extensions": [
@@ -52,7 +54,8 @@
       "ignorePackages",
       {
         "ts": "never",
-        "tsx": "never"
+        "tsx": "never",
+        "js": "never"
       }
     ]
   },

@@ -37,19 +37,6 @@ export default function App(): JSX.Element {
         />
 
         <Card
-          type="default"
-          cardTitle="COLÉGIO XZ"
-          textColor="#727272"
-          logo={{ uri: studentImg }}
-          dueDate="29 JUL"
-          cnpj="99.999.0001/99"
-          text="Débito automático no dia do vencimento"
-          containerStyle={{ marginBottom: 20 }}
-          value={300}
-          barColor="#125598"
-        />
-
-        <Card
           type="lightBill"
           dueDate="25 JUL"
           cnpj="99.999.0001/99"

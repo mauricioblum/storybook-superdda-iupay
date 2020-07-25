@@ -18,7 +18,7 @@ export const Bar = styled.View<CustomProps>`
   height: 100%;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  background: ${(props) => props.color || '#d71921'};
+  background: ${(props): string => props.color || '#d71921'};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
 `;
 
@@ -59,11 +59,11 @@ export const CardTitle = styled.Text`
 export const Logo = styled.Image``;
 
 export const DueDateText = styled.Text<CustomProps>`
-  font-family: ${(props) =>
+  font-family: ${(props): string =>
     props.isDue ? 'NunitoSans-Bold' : 'NunitoSans-SemiBold'};
-  font-size: ${(props) => (props.isDue ? '14px' : '13px')};
+  font-size: ${(props): string => (props.isDue ? '14px' : '13px')};
   line-height: 17px;
-  color: ${(props) => (props.isDue ? '#e30613' : '#7a7a7b')};
+  color: ${(props): string => (props.isDue ? '#e30613' : '#7a7a7b')};
 `;
 
 export const BetweenRow = styled.View`
@@ -72,7 +72,7 @@ export const BetweenRow = styled.View`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2px;
-  min-height: 16px;
+  min-height: 18px;
 `;
 
 export const CnpjText = styled.Text`
@@ -96,10 +96,10 @@ export const PaidText = styled.Text`
 export const CardText = styled.Text`
   font-family: 'NunitoSans-Regular';
   font-size: 13px;
-  font-weight: 600;
   line-height: 14px;
   text-align: left;
   color: #727272;
+  min-height: 18px;
 `;
 
 export const MailButton = styled.TouchableOpacity``;

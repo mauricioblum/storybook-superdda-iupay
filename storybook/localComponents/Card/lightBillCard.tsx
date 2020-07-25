@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import NumberFormat from 'react-number-format';
+import styled from 'styled-components/native';
 import {
   Container,
   Bar,
@@ -17,14 +19,12 @@ import {
   CurrencyText,
   ValueText,
 } from './styles';
-import NumberFormat from 'react-number-format';
 
 import lightbulb from '../assets/images/lightbulb.png';
 import mailIcon from '../assets/images/mail.png';
 
-
 import type { CardProps } from '.';
-import styled from 'styled-components/native';
+import { formatDate } from '../utils/formatDate';
 
 const logoStyle = {
   width: 40,
@@ -37,7 +37,7 @@ const FlagText = styled.Text<{ color: string }>`
   font-weight: bold;
   line-height: 16px;
   text-align: left;
-  color: ${(props) => props.color};
+  color: ${(props): string => props.color};
 `;
 
 export const LightBillCard: React.FC<CardProps> = ({
@@ -48,6 +48,7 @@ export const LightBillCard: React.FC<CardProps> = ({
   text,
   barColor = '#8aa626',
   isDue,
+  isDueText = 'Vencendo hoje',
   containerStyle,
   lightBillFlagStatus,
   isPaid,
@@ -56,12 +57,16 @@ export const LightBillCard: React.FC<CardProps> = ({
   const getFlagColor = useCallback((): string => {
     if (lightBillFlagStatus === 'green') {
       return '#8aa626';
-    } else if (lightBillFlagStatus === 'yellow') {
-      return '#ebbf10';
-    } else {
-      return '#e30613';
     }
+    if (lightBillFlagStatus === 'yellow') {
+      return '#ebbf10';
+    }
+    return '#e30613';
   }, [lightBillFlagStatus]);
+
+  const formattedDate = useMemo(() => {
+    return isDue ? `${isDueText}, ${formatDate(dueDate)}` : formatDate(dueDate);
+  }, [dueDate, isDue, isDueText]);
 
   return (
     <Container style={containerStyle}>
@@ -69,7 +74,7 @@ export const LightBillCard: React.FC<CardProps> = ({
       <Content>
         <CardHeader>
           <Logo style={logoStyle} source={lightbulb} resizeMode="contain" />
-          <DueDateText isDue={isDue}>{dueDate}</DueDateText>
+          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>
@@ -87,10 +92,12 @@ export const LightBillCard: React.FC<CardProps> = ({
             <CurrencyText>R$</CurrencyText>
             <NumberFormat
               value={value}
-              displayType={'text'}
+              displayType="text"
               thousandSeparator="."
               decimalSeparator=","
-              renderText={(number) => <ValueText>{number}</ValueText>}
+              renderText={(number): React.ReactNode => (
+                <ValueText>{number}</ValueText>
+              )}
               decimalScale={2}
               fixedDecimalScale
             />

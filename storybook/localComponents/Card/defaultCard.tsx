@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import NumberFormat from 'react-number-format';
+import { formatDate } from '../utils/formatDate';
 import {
   Container,
   Bar,
@@ -20,7 +22,6 @@ import {
   BetweenRow,
   PaidText,
 } from './styles';
-import NumberFormat from 'react-number-format';
 
 import mailIcon from '../assets/images/mail.png';
 
@@ -36,19 +37,22 @@ export const DefaultCard: React.FC<CardProps> = ({
   textColor,
   barColor,
   isDue,
+  isDueText = 'Vencendo hoje',
   isPaid,
   containerStyle,
   onMailButtonPress,
   logo,
   imageWidth,
-  imageHeight
+  imageHeight,
 }) => {
-
   const logoStyle = {
     width: imageWidth || 90,
     height: imageHeight || 30,
-    resizeMode: 'contain',
   };
+
+  const formattedDate = useMemo(() => {
+    return isDue ? `${isDueText}, ${formatDate(dueDate)}` : formatDate(dueDate);
+  }, [dueDate, isDue, isDueText]);
 
   return (
     <Container style={containerStyle}>
@@ -57,11 +61,16 @@ export const DefaultCard: React.FC<CardProps> = ({
         <CardHeader>
           <CardTitleContainer>
             {logo && (
-              <Logo style={logoStyle} source={{ uri: logo }} resizeMode="contain" resizeMethod="resize" />
+              <Logo
+                style={logoStyle}
+                source={{ uri: logo }}
+                resizeMode="contain"
+                resizeMethod="resize"
+              />
             )}
             <CardTitle>{cardTitle}</CardTitle>
           </CardTitleContainer>
-          <DueDateText isDue={isDue}>{dueDate}</DueDateText>
+          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>
@@ -79,7 +88,7 @@ export const DefaultCard: React.FC<CardProps> = ({
             <CurrencyText>R$</CurrencyText>
             <NumberFormat
               value={value}
-              displayType={'text'}
+              displayType="text"
               thousandSeparator="."
               decimalSeparator=","
               renderText={(number) => <ValueText>{number}</ValueText>}

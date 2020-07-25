@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { Image } from 'react-native';
+import NumberFormat from 'react-number-format';
 import {
   Container,
   Bar,
@@ -18,16 +20,16 @@ import {
   BetweenRow,
   PaidText,
 } from './styles';
-import NumberFormat from 'react-number-format';
 
 import netflixLogo from '../assets/images/netflix-logo.png';
-import mailIcon from '../assets/images/mail.png';
+import mailIcon from '../assets/images/mail.svg';
 
 import type { CardProps } from '.';
+import { formatDate } from '../utils/formatDate';
 
 const logoStyle = {
-  width: 90,
-  height: 30,
+  width: netflixLogo.data.width * 0.07,
+  height: netflixLogo.data.height * 0.085,
 };
 
 export const NetflixCard: React.FC<CardProps> = ({
@@ -38,17 +40,25 @@ export const NetflixCard: React.FC<CardProps> = ({
   text,
   barColor,
   isDue,
+  isDueText = 'Vencendo hoje',
   isPaid,
   containerStyle,
   onMailButtonPress,
 }) => {
+  const formattedDate = useMemo(() => {
+    return isDue ? `${isDueText}, ${formatDate(dueDate)}` : formatDate(dueDate);
+  }, [dueDate, isDue, isDueText]);
+
+  console.log(netflixLogo);
+  console.log(logoStyle);
+
   return (
     <Container style={containerStyle}>
       <Bar color={barColor} />
       <Content>
         <CardHeader>
           <Logo style={logoStyle} source={netflixLogo} resizeMode="contain" />
-          <DueDateText isDue={isDue}>{dueDate}</DueDateText>
+          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>
@@ -66,10 +76,12 @@ export const NetflixCard: React.FC<CardProps> = ({
             <CurrencyText>R$</CurrencyText>
             <NumberFormat
               value={value}
-              displayType={'text'}
+              displayType="text"
               thousandSeparator="."
               decimalSeparator=","
-              renderText={(number) => <ValueText>{number}</ValueText>}
+              renderText={(number): React.ReactNode => (
+                <ValueText>{number}</ValueText>
+              )}
               decimalScale={2}
               fixedDecimalScale
             />

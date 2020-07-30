@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 
 interface CustomProps {
   color?: string;
-  isDue?: boolean;
 }
 
 export const Container = styled.View`
@@ -40,7 +39,7 @@ export const CardBody = styled.View`
 `;
 
 export const CardFooter = styled(CardHeader)`
-  margin-top: 9px;
+  margin-top: 10px;
 `;
 
 export const CardIcons = styled.View`
@@ -65,12 +64,10 @@ export const CardTitle = styled.Text`
 
 export const Logo = styled.Image``;
 
-export const DueDateText = styled.Text<CustomProps>`
-  font-family: ${(props): string =>
-    props.isDue ? 'NunitoSans-Bold' : 'NunitoSans-SemiBold'};
-  font-size: ${(props): string => (props.isDue ? '14px' : '13px')};
-  line-height: 17px;
-  color: ${(props): string => (props.isDue ? '#e30613' : '#7a7a7b')};
+export const CardTypeText = styled.Text<CustomProps>`
+  font-family: 'NunitoSans-Bold';
+  font-size: 13px;
+  color: ${(props) => props.color || '#727272'};
 `;
 
 export const BetweenRow = styled.View`
@@ -91,49 +88,17 @@ export const CnpjText = styled.Text`
   color: #727272;
 `;
 
-export const PaidText = styled.Text`
-  font-family: 'NunitoSans-Bold';
+export const CardInfoBlock = styled.View`
+  min-width: 220px;
+`;
+
+export const CardText = styled.Text<CustomProps>`
+  font-family: 'NunitoSans-SemiBold';
   font-size: 12px;
-  font-weight: bold;
-  line-height: 16px;
-  text-align: left;
-  color: #8aa626;
+  line-height: 13px;
+  color: ${(props) => props.color || '#727272'};
 `;
 
-export const CardText = styled.Text`
-  font-family: 'NunitoSans-Regular';
-  font-size: 13px;
-  line-height: 14px;
-  text-align: left;
-  color: #727272;
-  min-height: 18px;
-`;
-
-export const MailIcon = styled.Image`
-  width: 20px;
-  height: 15px;
-  margin-right: 5px;
-`;
-
-export const CardValue = styled.View`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const CurrencyText = styled.Text`
-  font-family: 'NunitoSans-Regular';
-  font-size: 13px;
-  line-height: 16px;
-  text-align: right;
-  color: #7a7a7b;
-  margin-right: 2px;
-`;
-
-export const ValueText = styled.Text`
-  font-family: 'NunitoSans-Bold';
-  font-size: 17px;
-  font-weight: bold;
-  line-height: 16px;
-  text-align: right;
-  color: #7a7a7b;
+export const LimitValueText = styled(CardText)`
+  font-size: 11px;
 `;

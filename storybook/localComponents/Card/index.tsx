@@ -1,5 +1,5 @@
 import React from 'react';
-import type { StyleProp, ViewStyle, ImageSourcePropType } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 import { NetflixCard } from './netflixCard';
 import { LightBillCard } from './lightBillCard';
 import { DefaultCard } from './defaultCard';
@@ -20,7 +20,8 @@ export interface CardProps {
   isDueText?: string;
   containerStyle?: StyleProp<ViewStyle>;
   isPaid?: boolean;
-  onMailButtonPress?(): void;
+  isFromMail?: boolean;
+  isUserAdded?: boolean;
   lightBillFlagStatus?: 'green' | 'yellow' | 'red';
   imageWidth?: number;
   imageHeight?: number;

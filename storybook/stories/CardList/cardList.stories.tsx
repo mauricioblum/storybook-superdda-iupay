@@ -46,6 +46,15 @@ export const Default = () => {
       logo:
         'https://upload.wikimedia.org/wikipedia/commons/a/a3/Novo_renner.png',
     },
+    {
+      dueDate: new Date(2020, 7, 5),
+      value: 11000,
+      barColor: '#999999',
+      isPaid: false,
+      cardTitle: 'ARNALDO PESSOA LEAL',
+      logo:
+        'https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png',
+    },
   ];
 
   return <CardList cards={cards} />;

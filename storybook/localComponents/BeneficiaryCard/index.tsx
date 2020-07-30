@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
+import type { StyleProp, ViewStyle } from 'react-native';
 import NumberFormat from 'react-number-format';
 import { MailIcon, UserCheck, UserX } from '../Icons';
-import { formatDate } from '../utils/formatDate';
 import {
   Container,
   Bar,
@@ -9,49 +9,59 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  CardIcons,
   CardTitleContainer,
   CardTitle,
   Logo,
-  DueDateText,
+  CardTypeText,
+  CardInfoBlock,
   CardText,
+  LimitValueText,
   CnpjText,
-  CardValue,
-  CurrencyText,
-  ValueText,
   BetweenRow,
-  PaidText,
 } from './styles';
 
-import type { CardProps } from '.';
+type CardType = 'Account' | 'Monthly';
 
-export const DefaultCard: React.FC<CardProps> = ({
-  children,
-  value,
-  dueDate,
-  cnpj,
-  cardTitle,
-  text,
-  textColor,
+interface BeneficiaryCardProps {
+  barColor?: string;
+  cardTitle?: string;
+  cardTextColor?: string;
+  containerStyle?: StyleProp<ViewStyle>;
+  cnpj?: string;
+  isActive?: boolean;
+  imageWidth?: number;
+  imageHeight?: number;
+  limitValue?: number;
+  limitValueText?: string;
+  logo?: string;
+  text?: string;
+  type?: CardType;
+}
+
+export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
   barColor,
-  isDue,
-  isDueText = 'Vencendo hoje',
-  isPaid,
-  isFromMail,
-  isUserAdded,
+  cardTitle,
+  cardTextColor,
+  children,
   containerStyle,
+  cnpj,
+  isActive,
   logo,
+  limitValue,
+  limitValueText = 'Valor Limite',
   imageWidth,
   imageHeight,
+  text,
+  type,
 }) => {
   const logoStyle = {
     width: imageWidth || 90,
     height: imageHeight || 30,
   };
 
-  const formattedDate = useMemo(() => {
-    return isDue ? `${isDueText}, ${formatDate(dueDate)}` : formatDate(dueDate);
-  }, [dueDate, isDue, isDueText]);
+  const cardTypeText = useMemo(() => {
+    return type === 'Account' ? 'Conta' : 'Mensalidade';
+  }, [type]);
 
   return (
     <Container style={containerStyle}>
@@ -69,33 +79,27 @@ export const DefaultCard: React.FC<CardProps> = ({
             )}
             <CardTitle>{cardTitle}</CardTitle>
           </CardTitleContainer>
-          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
+          <CardTypeText color={cardTextColor}>{cardTypeText}</CardTypeText>
         </CardHeader>
         <CardBody>
-          <BetweenRow>
-            {cnpj && <CnpjText>CNPJ: {cnpj}</CnpjText>}
-            {isPaid === true && <PaidText>PAGO</PaidText>}
-          </BetweenRow>
-          <CardText style={{ color: textColor }}>{text}</CardText>
-          {children}
+          <BetweenRow>{cnpj && <CnpjText>CNPJ: {cnpj}</CnpjText>}</BetweenRow>
         </CardBody>
         <CardFooter>
-          <CardIcons>
-            {isFromMail && <MailIcon />}
-            {isUserAdded ? <UserCheck /> : <UserX />}
-          </CardIcons>
-          <CardValue>
-            <CurrencyText>R$</CurrencyText>
+          <CardInfoBlock>
+            <CardText style={{ color: cardTextColor }}>{text}</CardText>
             <NumberFormat
-              value={value}
+              value={limitValue}
               displayType="text"
               thousandSeparator="."
               decimalSeparator=","
-              renderText={(number) => <ValueText>{number}</ValueText>}
+              renderText={(number) => (
+                <LimitValueText>{`${limitValueText}: R$${number}`}</LimitValueText>
+              )}
               decimalScale={2}
               fixedDecimalScale
             />
-          </CardValue>
+            {children}
+          </CardInfoBlock>
         </CardFooter>
       </Content>
     </Container>

@@ -21,6 +21,8 @@ export const CardList: React.FC<CardListProps> = ({ cards }) => {
           barColor={card.barColor}
           logo={card.logo}
           isPaid={card.isPaid}
+          cardTitle={card.cardTitle}
+          cardTitleColor={card.cardTitleColor}
         />
       ))}
     </Container>

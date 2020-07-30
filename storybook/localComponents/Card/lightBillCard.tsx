@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import NumberFormat from 'react-number-format';
 import styled from 'styled-components/native';
+import { MailIcon, UserCheck, UserX, LightBulb } from '../Icons';
 import {
   Container,
   Bar,
@@ -8,20 +9,16 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  CardIcons,
   Logo,
   DueDateText,
   BetweenRow,
   CnpjText,
   PaidText,
-  MailButton,
-  MailIcon,
   CardValue,
   CurrencyText,
   ValueText,
 } from './styles';
-
-import lightbulb from '../assets/images/lightbulb.png';
-import mailIcon from '../assets/images/mail.png';
 
 import type { CardProps } from '.';
 import { formatDate } from '../utils/formatDate';
@@ -52,7 +49,8 @@ export const LightBillCard: React.FC<CardProps> = ({
   containerStyle,
   lightBillFlagStatus,
   isPaid,
-  onMailButtonPress,
+  isFromMail,
+  isUserAdded,
 }) => {
   const getFlagColor = useCallback((): string => {
     if (lightBillFlagStatus === 'green') {
@@ -73,7 +71,8 @@ export const LightBillCard: React.FC<CardProps> = ({
       <Bar color={barColor} />
       <Content>
         <CardHeader>
-          <Logo style={logoStyle} source={lightbulb} resizeMode="contain" />
+          {/* <Logo style={logoStyle} source={lightbulb} resizeMode="contain" /> */}
+          <LightBulb size={35} />
           <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
@@ -85,9 +84,10 @@ export const LightBillCard: React.FC<CardProps> = ({
           {children}
         </CardBody>
         <CardFooter>
-          <MailButton onPress={onMailButtonPress}>
-            <MailIcon source={mailIcon} />
-          </MailButton>
+          <CardIcons>
+            {isFromMail && <MailIcon />}
+            {isUserAdded ? <UserCheck /> : <UserX />}
+          </CardIcons>
           <CardValue>
             <CurrencyText>R$</CurrencyText>
             <NumberFormat

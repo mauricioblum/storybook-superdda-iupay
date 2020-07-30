@@ -9,8 +9,10 @@ import {
   Bar,
   Content,
   CardRow,
+  LogoSection,
   LogoWrapper,
   Logo,
+  CardTitle,
   CardInfo,
   DueDateText,
   ValueText,
@@ -22,6 +24,8 @@ export interface CardListItemProps {
   logo?: string;
   barColor?: string;
   isPaid?: boolean;
+  cardTitle?: string;
+  cardTitleColor?: string;
   onCardClick?: () => void;
 }
 
@@ -30,6 +34,8 @@ export const CardListItem: React.FC<CardListItemProps> = ({
   dueDate,
   value,
   logo,
+  cardTitle,
+  cardTitleColor,
   onCardClick,
 }) => {
   const [logoWidth, setLogoWidth] = useState(0);
@@ -81,14 +87,20 @@ export const CardListItem: React.FC<CardListItemProps> = ({
       <Bar color={barColor} />
       <Content>
         <CardRow>
-          <LogoWrapper>
-            <Logo
-              style={{ width: logoWidth, height: logoHeight }}
-              source={{ uri: logo }}
-              resizeMode="contain"
-              resizeMethod="resize"
-            />
-          </LogoWrapper>
+          <LogoSection>
+            <LogoWrapper>
+              <Logo
+                style={{ width: logoWidth, height: logoHeight }}
+                source={{ uri: logo }}
+                resizeMode="contain"
+                resizeMethod="resize"
+              />
+            </LogoWrapper>
+            {cardTitle && (
+              <CardTitle color={cardTitleColor}>{cardTitle}</CardTitle>
+            )}
+          </LogoSection>
+
           <CardInfo>
             <DueDateText>{formattedDate}</DueDateText>
             <NumberFormat

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Image } from 'react-native';
 import NumberFormat from 'react-number-format';
+import { MailIcon, UserCheck, UserX } from '../Icons';
 import {
   Container,
   Bar,
@@ -8,12 +8,11 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  CardIcons,
   Logo,
   DueDateText,
   CardText,
   CnpjText,
-  MailButton,
-  MailIcon,
   CardValue,
   CurrencyText,
   ValueText,
@@ -43,7 +42,8 @@ export const NetflixCard: React.FC<CardProps> = ({
   isDueText = 'Vencendo hoje',
   isPaid,
   containerStyle,
-  onMailButtonPress,
+  isFromMail,
+  isUserAdded,
 }) => {
   const formattedDate = useMemo(() => {
     return isDue ? `${isDueText}, ${formatDate(dueDate)}` : formatDate(dueDate);
@@ -69,9 +69,10 @@ export const NetflixCard: React.FC<CardProps> = ({
           {children}
         </CardBody>
         <CardFooter>
-          <MailButton onPress={onMailButtonPress}>
-            <MailIcon source={mailIcon} />
-          </MailButton>
+          <CardIcons>
+            {isFromMail && <MailIcon />}
+            {isUserAdded ? <UserCheck /> : <UserX />}
+          </CardIcons>
           <CardValue>
             <CurrencyText>R$</CurrencyText>
             <NumberFormat

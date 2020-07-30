@@ -38,8 +38,13 @@ export const CardRow = styled.View`
   width: 100%;
 `;
 
+export const LogoSection = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const LogoWrapper = styled.View`
-  width: 100px;
+  width: 70px;
   height: 50px;
   flex-direction: row;
   align-items: flex-start;
@@ -48,6 +53,14 @@ export const LogoWrapper = styled.View`
 export const Logo = styled.Image`
   max-width: 100%;
   max-height: 100%;
+`;
+
+export const CardTitle = styled.Text<{ color?: string }>`
+  font-family: 'NunitoSans-SemiBold';
+  font-size: 12px;
+  color: ${(props) => props.color || '#707070'};
+  margin-left: 5px;
+  margin-bottom: 10px;
 `;
 
 export const CardInfo = styled.View``;

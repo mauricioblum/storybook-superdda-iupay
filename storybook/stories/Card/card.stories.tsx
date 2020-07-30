@@ -8,7 +8,11 @@ import {
   select,
 } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { Card } from '../../localComponents';
+import {
+  Card,
+  FeaturedCard as FeatureCardComponent,
+  BeneficiaryCard as BeneficiaryCardComponent,
+} from '../../localComponents';
 import { callback } from '../../helpers/callback';
 
 export default {
@@ -33,13 +37,15 @@ const imgOptions = {
 export const DefaultCard = () => (
   <Card
     cnpj={text('CNPJ', '99.999.999.0001-99')}
+    cardTitle={text('Card Title', '')}
     text={text('Card Text', 'Hello Storybook')}
     textColor={color('Text Color', '#666')}
-    onMailButtonPress={callback(action('Pressed mail button!'))}
     barColor={color('Bar Color', '#1dd15d')}
     dueDate={new Date()}
     value={number('Card Value/Price', 50)}
     logo={select('Logo Image', imgOptions, imgOptions.Spotify)}
+    isFromMail={boolean('Is From Mail?', false)}
+    isUserAdded={boolean('Is User Added?', false)}
     isPaid={boolean('Is Paid?', false)}
     isDue={boolean('Is Due?', false)}
     isDueText={text('Is Due Text', 'Vencendo hoje')}
@@ -53,8 +59,9 @@ export const NetflixCard = () => (
     type="netflix"
     cnpj={text('CNPJ', '99.999.999.0001-99')}
     text={text('Card Text', 'Assinatura Netflix')}
-    onMailButtonPress={callback(action('Pressed mail button!'))}
     dueDate={new Date()}
+    isFromMail={boolean('Is From Mail?', false)}
+    isUserAdded={boolean('Is User Added?', false)}
     value={number('Card Value/Price', 50)}
     isDue={boolean('Is Due?', false)}
     isPaid={boolean('Is Paid?', false)}
@@ -66,9 +73,10 @@ export const LightBillCard = () => (
     type="lightBill"
     cnpj={text('CNPJ', '99.999.999.0001-99')}
     text={text('Card Text', 'Cor da Bandeira')}
-    onMailButtonPress={callback(action('Pressed mail button!'))}
     dueDate={new Date()}
     value={number('Card Value/Price', 50)}
+    isFromMail={boolean('Is From Mail?', false)}
+    isUserAdded={boolean('Is User Added?', false)}
     isDue={boolean('Is Due?', false)}
     isPaid={boolean('Is Paid?', false)}
     lightBillFlagStatus={select(
@@ -76,5 +84,44 @@ export const LightBillCard = () => (
       ['green', 'yellow', 'red'],
       'yellow',
     )}
+  />
+);
+
+export const FeaturedCard = () => (
+  <FeatureCardComponent
+    cnpj={text('CNPJ', '99.999.999.0001-99')}
+    cardTitle={text('Card Title', '')}
+    text={text('Card Text', 'Hello Storybook')}
+    textColor={color('Text Color', '#666')}
+    barColor={color('Bar Color', '#1dd15d')}
+    dueDate={new Date()}
+    value={number('Card Value/Price', 50)}
+    logo={select('Logo Image', imgOptions, imgOptions.Spotify)}
+    isFromMail={boolean('Is From Mail?', false)}
+    isUserAdded={boolean('Is User Added?', false)}
+    isPaid={boolean('Is Paid?', false)}
+    isDue={boolean('Is Due?', false)}
+    isDueText={text('Is Due Text', 'Vencendo hoje')}
+    imageWidth={number('Image Width', 77)}
+    imageHeight={number('Image Height', 38)}
+  />
+);
+
+export const BeneficiaryCard = () => (
+  <BeneficiaryCardComponent
+    cnpj={text('CNPJ', '99.999.999.0001-99')}
+    cardTitle={text('Card Title', 'CERJ')}
+    cardTextColor={color('Card Text Color', '#727272')}
+    text={text('Card Text', 'Débito automático no dia do vencimento')}
+    barColor={color('Bar Color', '#999')}
+    limitValue={number('Limit Value', 300)}
+    logo={text(
+      'Logo URL',
+      'https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png',
+    )}
+    imageWidth={number('Image Width', 30)}
+    imageHeight={number('Image Height', 30)}
+    isActive
+    type={select('Card Type', ['Account', 'Monthly'], 'Account')}
   />
 );

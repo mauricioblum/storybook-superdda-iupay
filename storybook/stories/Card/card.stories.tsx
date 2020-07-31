@@ -7,16 +7,14 @@ import {
   color,
   select,
 } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import {
   Card,
   FeaturedCard as FeatureCardComponent,
   BeneficiaryCard as BeneficiaryCardComponent,
 } from '../../localComponents';
-import { callback } from '../../helpers/callback';
 
 export default {
-  title: 'Card',
+  title: 'Cards',
   decorators: [withKnobs],
   parameters: {
     jsx: { skip: 1 },
@@ -44,7 +42,7 @@ export const DefaultCard = () => (
     dueDate={new Date()}
     value={number('Card Value/Price', 50)}
     logo={select('Logo Image', imgOptions, imgOptions.Spotify)}
-    isFromMail={boolean('Is From Mail?', false)}
+    isFromMail={boolean('Is From Mail?', true)}
     isUserAdded={boolean('Is User Added?', false)}
     isPaid={boolean('Is Paid?', false)}
     isDue={boolean('Is Due?', false)}
@@ -60,7 +58,7 @@ export const NetflixCard = () => (
     cnpj={text('CNPJ', '99.999.999.0001-99')}
     text={text('Card Text', 'Assinatura Netflix')}
     dueDate={new Date()}
-    isFromMail={boolean('Is From Mail?', false)}
+    isFromMail={boolean('Is From Mail?', true)}
     isUserAdded={boolean('Is User Added?', false)}
     value={number('Card Value/Price', 50)}
     isDue={boolean('Is Due?', false)}
@@ -115,13 +113,14 @@ export const BeneficiaryCard = () => (
     text={text('Card Text', 'Débito automático no dia do vencimento')}
     barColor={color('Bar Color', '#999')}
     limitValue={number('Limit Value', 300)}
+    limitValueText={text('Limit Value Text', 'Valor Limite')}
     logo={text(
       'Logo URL',
       'https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png',
     )}
     imageWidth={number('Image Width', 30)}
     imageHeight={number('Image Height', 30)}
-    isActive
     type={select('Card Type', ['Account', 'Monthly'], 'Account')}
+    onSwitchChange={(value) => alert(`Changed to ${value}`)}
   />
 );

@@ -55,10 +55,10 @@ export const CardTitleContainer = styled.View`
   align-items: center;
 `;
 
-export const CardTitle = styled.Text`
+export const CardTitle = styled.Text<CustomProps>`
   font-family: 'NunitoSans-SemiBold';
   font-size: 14px;
-  color: #727272;
+  color: ${(props) => props.color || '#727272'};
   margin-left: 11px;
 `;
 
@@ -79,13 +79,13 @@ export const BetweenRow = styled.View`
   min-height: 18px;
 `;
 
-export const CnpjText = styled.Text`
+export const CnpjText = styled.Text<CustomProps>`
   font-family: 'NunitoSans-SemiBold';
   font-size: 13px;
   font-weight: 600;
   line-height: 14px;
   text-align: left;
-  color: #727272;
+  color: ${(props) => props.color || '#727272'};
 `;
 
 export const CardInfoBlock = styled.View`

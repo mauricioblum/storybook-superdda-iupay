@@ -12,7 +12,7 @@ import { CardList } from '../../localComponents';
 import { callback } from '../../helpers/callback';
 
 export default {
-  title: 'CardList',
+  title: 'CardsList',
   decorators: [withKnobs],
   parameters: {
     jsx: { skip: 1 },

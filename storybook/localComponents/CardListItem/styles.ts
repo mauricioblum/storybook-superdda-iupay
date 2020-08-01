@@ -12,6 +12,7 @@ export const Container = styled.TouchableOpacity.attrs({
   background-color: #ffffff;
   width: 100%;
   flex-direction: row;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.46);
   margin-bottom: -10px;
 `;
 
@@ -65,12 +66,12 @@ export const CardTitle = styled.Text<{ color?: string }>`
 
 export const CardInfo = styled.View``;
 
-export const DueDateText = styled.Text`
-  font-family: 'NunitoSans-SemiBold';
-  font-size: 11px;
-  color: #7a7a7b;
+export const DueDateText = styled.Text<CustomProps>`
+  font-family: ${(props): string =>
+    props.isDue ? 'NunitoSans-Bold' : 'NunitoSans-SemiBold'};
+  font-size: ${(props): string => (props.isDue ? '14px' : '11px')};
   line-height: 17px;
-  text-align: right;
+  color: ${(props): string => (props.isDue ? '#e30613' : '#7a7a7b')};
 `;
 
 export const ValueText = styled.Text`

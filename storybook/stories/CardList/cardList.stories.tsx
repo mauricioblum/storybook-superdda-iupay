@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View, Text } from 'react-native';
 import {
   withKnobs,
   text,
@@ -15,7 +16,8 @@ export default {
   title: 'CardsList',
   decorators: [withKnobs],
   parameters: {
-    jsx: { skip: 1 },
+    jsx: { skip: 2 },
+    appView: { disable: true },
   },
 };
 
@@ -57,5 +59,36 @@ export const Default = () => {
     },
   ];
 
-  return <CardList cards={cards} />;
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+      }}
+    >
+      <View
+        style={{
+          width: 420,
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100vh',
+        }}
+      >
+        <CardList
+          cards={cards}
+          featured={boolean('Featured', true)}
+          featuredBackgroundColor={color(
+            'Featured Background Color',
+            '#f78c49',
+          )}
+        >
+          <View>
+            <Text>Testing...</Text>
+          </View>
+        </CardList>
+      </View>
+    </View>
+  );
 };

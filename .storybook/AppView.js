@@ -34,5 +34,6 @@ const style = {
     backgroundColor: '#fed487',
     width: 420,
     height: '100vh',
+    overflow: 'hidden',
   }
 }

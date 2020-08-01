@@ -72,7 +72,7 @@ export const LightBillCard: React.FC<CardProps> = ({
       <Content>
         <CardHeader>
           {/* <Logo style={logoStyle} source={lightbulb} resizeMode="contain" /> */}
-          <LightBulb size={35} />
+          <LightBulb size={38} />
           <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>

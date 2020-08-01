@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Image } from 'react-native';
 import NumberFormat from 'react-number-format';
-import { format } from 'date-fns';
+import { format, isToday } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import {
@@ -20,6 +20,7 @@ import {
 
 export interface CardListItemProps {
   dueDate: Date;
+  isDueTodayText?: string;
   value: number;
   logo?: string;
   barColor?: string;
@@ -32,6 +33,7 @@ export interface CardListItemProps {
 export const CardListItem: React.FC<CardListItemProps> = ({
   barColor,
   dueDate,
+  isDueTodayText = 'Vencendo hoje',
   value,
   logo,
   cardTitle,
@@ -40,6 +42,10 @@ export const CardListItem: React.FC<CardListItemProps> = ({
 }) => {
   const [logoWidth, setLogoWidth] = useState(0);
   const [logoHeight, setLogoHeight] = useState(0);
+
+  const isDueToday = useMemo(() => {
+    return isToday(dueDate);
+  }, [dueDate]);
 
   const formattedDate = useMemo(() => {
     const weekDay = format(dueDate, "EEEE',' ", {
@@ -50,12 +56,16 @@ export const CardListItem: React.FC<CardListItemProps> = ({
       locale: ptBR,
     });
 
+    if (isDueToday) {
+      return `${isDueTodayText}, ${dayOfMonth.toUpperCase()}`;
+    }
+
     return (
       weekDay.charAt(0).toUpperCase() +
       weekDay.slice(1) +
       dayOfMonth.toUpperCase()
     );
-  }, [dueDate]);
+  }, [dueDate, isDueToday, isDueTodayText]);
 
   useEffect(() => {
     if (logo) {
@@ -71,19 +81,7 @@ export const CardListItem: React.FC<CardListItemProps> = ({
   }, [logo]);
 
   return (
-    <Container
-      onPress={onCardClick}
-      style={{
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 2,
-          height: 2,
-        },
-        shadowOpacity: 0.16,
-        shadowRadius: 2.65,
-        elevation: 7,
-      }}
-    >
+    <Container onPress={onCardClick}>
       <Bar color={barColor} />
       <Content>
         <CardRow>
@@ -102,7 +100,7 @@ export const CardListItem: React.FC<CardListItemProps> = ({
           </LogoSection>
 
           <CardInfo>
-            <DueDateText>{formattedDate}</DueDateText>
+            <DueDateText isDue={isDueToday}>{formattedDate}</DueDateText>
             <NumberFormat
               value={value}
               displayType="text"

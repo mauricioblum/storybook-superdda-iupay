@@ -1,16 +1,28 @@
 import React from 'react';
 import { CardListItem, CardListItemProps } from '../CardListItem';
-import { Container } from './styles';
+import { Container, ChildrenWrapper } from './styles';
 
 interface CardListProps {
   cards: CardListItemProps[];
+  featured?: boolean;
+  featuredBackgroundColor?: string;
 }
 
-export const CardList: React.FC<CardListProps> = ({ cards }) => {
+export const CardList: React.FC<CardListProps> = ({
+  cards,
+  featured,
+  featuredBackgroundColor,
+  children,
+}) => {
+  const bgColor =
+    featured && featuredBackgroundColor ? featuredBackgroundColor : undefined;
+
   return (
     <Container
       contentContainerStyle={{
         flex: 1,
+        backgroundColor: bgColor,
+        padding: 15,
       }}
     >
       {cards.map((card, index) => (
@@ -25,6 +37,7 @@ export const CardList: React.FC<CardListProps> = ({ cards }) => {
           cardTitleColor={card.cardTitleColor}
         />
       ))}
+      {children && <ChildrenWrapper>{children}</ChildrenWrapper>}
     </Container>
   );
 };

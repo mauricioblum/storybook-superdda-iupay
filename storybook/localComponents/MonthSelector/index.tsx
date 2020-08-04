@@ -7,13 +7,14 @@ import React, {
   useLayoutEffect,
 } from 'react';
 import { ScrollView, View, LayoutChangeEvent } from 'react-native';
-import { format, getMonth } from 'date-fns';
+import { getMonth } from 'date-fns';
 
 import { Container, MonthButton, MonthText } from './styles';
 
 interface MonthSelectorProps {
   currentMonth: number;
   onSelectMonth?(month: number): void;
+  monthScrollCenterOffset?: number;
 }
 
 const allMonths = [
@@ -70,6 +71,7 @@ const allMonths = [
 export const MonthSelector: React.FC<MonthSelectorProps> = ({
   currentMonth,
   onSelectMonth,
+  monthScrollCenterOffset,
 }) => {
   const monthList = useMemo(() => {
     const today = new Date();
@@ -131,12 +133,12 @@ export const MonthSelector: React.FC<MonthSelectorProps> = ({
       monthsXPositions.length > 0
     ) {
       monthSelectorRef.current.scrollTo({
-        x: monthsXPositions[monthIndex],
+        x: monthsXPositions[monthIndex] - (monthScrollCenterOffset || 400),
         y: 0,
         animated: false,
       });
     }
-  }, [currentMonth, monthsXPositions, monthList]);
+  }, [currentMonth, monthsXPositions, monthList, monthScrollCenterOffset]);
 
   return (
     <Container ref={monthSelectorRef}>

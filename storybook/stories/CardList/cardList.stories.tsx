@@ -7,6 +7,7 @@ import {
   number,
   color,
   select,
+  object,
 } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { CardList } from '../../localComponents';
@@ -42,7 +43,7 @@ export const Default = () => {
     },
     {
       dueDate: new Date(2020, 7, 5),
-      value: 812.98,
+      value: 812.99,
       barColor: '#e30613',
       isPaid: false,
       logo:
@@ -83,11 +84,21 @@ export const Default = () => {
             'Featured Background Color',
             '#f78c49',
           )}
-        >
-          <View>
-            <Text>Testing...</Text>
-          </View>
-        </CardList>
+          showTotal={boolean('Show Total?', true)}
+          totalDueOnly={boolean('Show Total Due Only?', false)}
+          totalPaymentText={text(
+            'Total Payment text',
+            'Valor total dos pagamentos que vencem hoje',
+          )}
+          totalPaymentTextStyle={object(
+            'Total Payment Additional Styles (JSON)',
+            {},
+          )}
+          totalPaymentValueStyle={object(
+            'Total Payment Value Additional Styles (JSON)',
+            {},
+          )}
+        />
       </View>
     </View>
   );

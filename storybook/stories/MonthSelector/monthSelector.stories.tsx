@@ -25,6 +25,7 @@ export const Default = () => {
     <MonthSelector
       currentMonth={new Date().getMonth()}
       onSelectMonth={callback(action('Month selected'))}
+      monthScrollCenterOffset={number('Scroll offset', 400)}
     />
   );
 };

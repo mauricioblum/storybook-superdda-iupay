@@ -11,3 +11,14 @@ export const ChildrenWrapper = styled.View`
   justify-content: center;
   margin-top: 20px;
 `;
+
+export const TotalPaymentText = styled.Text`
+  font-family: 'NunitoSans-Regular';
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+`;
+
+export const TotalPaymentTextValue = styled(TotalPaymentText)`
+  font-family: 'NunitoSans-Bold';
+`;

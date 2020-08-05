@@ -109,3 +109,99 @@ export const LightBulb: React.FC<IconProps> = ({
     </View>
   );
 };
+
+export const ChevronLeft: React.FC<IconProps> = ({
+  color = '#707070',
+  size = 40,
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      color={color}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-chevron-left"
+    >
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  );
+};
+
+export const MoreVertical: React.FC<IconProps> = ({
+  color = '#707070',
+  size = 40,
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      color={color}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-more-vertical"
+    >
+      <circle cx="12" cy="12" r="1" />
+      <circle cx="12" cy="5" r="1" />
+      <circle cx="12" cy="19" r="1" />
+    </svg>
+  );
+};
+
+export const IuPayIcon: React.FC<IconProps & { marginRight?: number }> = ({
+  color = '#000',
+  size = 24,
+  marginRight = 10,
+}) => {
+  return (
+    <View style={{ marginRight }}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.0"
+        viewBox="0 0 250 250"
+        fill="currentColor"
+        width={size}
+        height={size}
+        color={color}
+      >
+        <defs />
+        <path d="M56.4 67.3c-.3.8-.4 4.9-.2 9.3l.3 7.9h18l.3-7c.5-11.6.6-11.5-9.4-11.5-6.1 0-8.6.4-9 1.3zM94.4 67.3c-.2.7-.3 25.1-.2 54.3l.3 52.9 2.4 5.2c2.8 6.3 9.1 12.4 15.2 14.7 3.9 1.5 8.5 1.6 39.4 1.4 31.6-.3 35.4-.5 38.7-2.1 4.9-2.5 10.3-7.9 13.1-13l2.2-4.2v-110h-18l-.5 53.2-.5 53.2-2.3 2.3c-2.3 2.3-2.3 2.3-34.2 2.3-31.9 0-31.9 0-34.2-2.3l-2.3-2.3-.5-53.2-.5-53.2-8.8-.3c-6.6-.2-8.9 0-9.3 1.1zM56.7 101.6c-.4.4-.7 21.8-.7 47.6V196h19l-.2-47.3-.3-47.2-8.5-.3c-4.7-.1-8.9 0-9.3.4z" />
+      </svg>
+    </View>
+  );
+};
+
+export const CloseCircle: React.FC<IconProps> = ({
+  color = '#727272',
+  size = 40,
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      color={color}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-x-circle"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="15" y1="9" x2="9" y2="15" />
+      <line x1="9" y1="9" x2="15" y2="15" />
+    </svg>
+  );
+};

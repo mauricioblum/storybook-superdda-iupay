@@ -1,13 +1,5 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import {
-  withKnobs,
-  text,
-  boolean,
-  number,
-  color,
-  select,
-} from '@storybook/addon-knobs';
+import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { callback } from '../../helpers/callback';
 import { MonthSelector } from '../../localComponents/MonthSelector';

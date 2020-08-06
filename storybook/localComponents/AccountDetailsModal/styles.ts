@@ -33,22 +33,26 @@ export const ModalTitle = styled.Text`
   color: #727272;
 `;
 
-export const ModalContent = styled.View`
-  margin: 20px;
+export const ModalContent = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
+  margin: 10px 20px 20px 20px;
   background-color: #fff;
   flex: 1;
+  padding-bottom: 36px;
 `;
 
 export const ModalWebContainer = styled.View`
   width: 359px;
-  min-height: 500px;
+  min-height: 530px;
   background: #fff;
   background-color: #fff;
   border-radius: 5px;
   z-index: 500;
   position: absolute;
-  top: 10%;
+  top: 7%;
   left: 4%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.49);
 `;
 
 export const Title = styled.Text`
@@ -62,4 +66,20 @@ export const ModalText = styled.Text`
   font-family: 'NunitoSans-Regular';
   font-size: 15px;
   color: #727272;
+`;
+
+export const ModalTextBold = styled(ModalText)`
+  font-family: 'NunitoSans-Bold';
+`;
+
+export const ModalInfoBlock = styled.View`
+  margin-top: 20px;
+`;
+
+export const ModalInfoBlockLast = styled.View`
+  margin-top: 20px;
+`;
+
+export const ModalInfoRow = styled.View`
+  flex-direction: row;
 `;

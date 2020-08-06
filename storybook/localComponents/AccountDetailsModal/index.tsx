@@ -1,4 +1,5 @@
 import React from 'react';
+import NumberFormat from 'react-number-format';
 import { View, Modal, Alert } from 'react-native';
 import { CloseCircle } from '../Icons';
 import {
@@ -11,7 +12,12 @@ import {
   ModalWebContainer,
   Title,
   ModalText,
+  ModalTextBold,
+  ModalInfoBlock,
+  ModalInfoBlockLast,
+  ModalInfoRow,
 } from './styles';
+import { formatMonthDate, formatStringDate } from '../../helpers/formatDate';
 
 export interface AccountDetailsModalProps {
   title?: string;
@@ -19,7 +25,7 @@ export interface AccountDetailsModalProps {
   cnpj?: string;
   cardNumber?: string;
   clientName?: string;
-  month?: number;
+  month?: string;
   value?: number;
   dueDate?: Date;
   emissionDate?: Date;
@@ -30,13 +36,34 @@ export interface AccountDetailsModalProps {
   interestRateCET?: number;
   interestInstallmentRate?: number;
   interestInstallmentRateCET?: number;
+  interestInstallmentFine?: number;
   isOpen: boolean;
   onClickClose: () => void;
   renderMobile: boolean;
 }
 
 const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
-  const { isOpen, title, onClickClose, companyName, cnpj, cardNumber } = props;
+  const {
+    isOpen,
+    title,
+    onClickClose,
+    companyName,
+    cnpj,
+    cardNumber,
+    clientName,
+    month,
+    value,
+    dueDate,
+    emissionDate,
+    minimumPaymentValue,
+    totalLimit,
+    totalWithdrawLimit,
+    interestRate,
+    interestRateCET,
+    interestInstallmentRate,
+    interestInstallmentRateCET,
+    interestInstallmentFine,
+  } = props;
 
   return isOpen ? (
     <ModalWebContainer>
@@ -52,6 +79,98 @@ const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
         <Title>{companyName}</Title>
         <ModalText>CNPJ {cnpj}</ModalText>
         <ModalText>Cartão {cardNumber}</ModalText>
+
+        <ModalInfoBlock>
+          <ModalText>{clientName}</ModalText>
+          <ModalTextBold>
+            {formatStringDate(month, 'short').toUpperCase()}
+          </ModalTextBold>
+
+          <ModalInfoRow>
+            <ModalText>Valor: </ModalText>
+            <NumberFormat
+              value={value}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              renderText={(number) => (
+                <ModalTextBold>R$ {number}</ModalTextBold>
+              )}
+              decimalScale={2}
+              fixedDecimalScale
+            />
+          </ModalInfoRow>
+
+          <ModalInfoRow>
+            <ModalText>Vencimento: </ModalText>
+            <ModalTextBold>{formatMonthDate(dueDate)}</ModalTextBold>
+          </ModalInfoRow>
+
+          <ModalInfoRow>
+            <ModalText>Emissão e Envio: </ModalText>
+            <ModalText>{formatMonthDate(emissionDate)}</ModalText>
+          </ModalInfoRow>
+        </ModalInfoBlock>
+
+        <ModalInfoBlock>
+          <ModalInfoRow>
+            <ModalText>Pagamento mínimo: </ModalText>
+            <NumberFormat
+              value={minimumPaymentValue}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              renderText={(number) => (
+                <ModalTextBold>R$ {number}</ModalTextBold>
+              )}
+              decimalScale={2}
+              fixedDecimalScale
+            />
+          </ModalInfoRow>
+
+          <ModalInfoRow>
+            <ModalText>Limite total: </ModalText>
+            <NumberFormat
+              value={totalLimit}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              renderText={(number) => <ModalText>R$ {number}</ModalText>}
+              decimalScale={2}
+              fixedDecimalScale
+            />
+          </ModalInfoRow>
+
+          <ModalInfoRow>
+            <ModalText>Limite de saque total: </ModalText>
+            <NumberFormat
+              value={totalWithdrawLimit}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              renderText={(number) => <ModalText>R$ {number}</ModalText>}
+              decimalScale={2}
+              fixedDecimalScale
+            />
+          </ModalInfoRow>
+        </ModalInfoBlock>
+
+        <ModalInfoBlock>
+          <ModalTextBold>Juros rotativo:</ModalTextBold>
+          <ModalText>
+            {interestRate}% am CET: {interestRateCET}% aa
+          </ModalText>
+        </ModalInfoBlock>
+
+        <ModalInfoBlockLast>
+          <ModalTextBold>Juros de parcelamento:</ModalTextBold>
+          <ModalText>consulte o app na contratação</ModalText>
+          <ModalText>juros e mora em caso de atraso:</ModalText>
+          <ModalText>
+            {interestInstallmentRate}% am + {interestInstallmentFine}% multa
+            CET: {interestInstallmentRateCET}% aa
+          </ModalText>
+        </ModalInfoBlockLast>
       </ModalContent>
     </ModalWebContainer>
   ) : (

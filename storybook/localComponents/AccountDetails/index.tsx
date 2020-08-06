@@ -1,7 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import NumberFormat from 'react-number-format';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 import {
   WrapperView,
   Container,
@@ -41,10 +39,26 @@ import {
   UserX,
 } from '../Icons';
 import AccountDetailsModal from '../AccountDetailsModal';
+import { formatStringDate } from '../../helpers/formatDate';
 
 export interface PaymentHistoryItem {
   date: string;
   value: number;
+}
+
+export interface BillDetails {
+  billDate: string;
+  value: number;
+  dueDate: Date;
+  emissionDate: Date;
+  minimumPaymentValue: number;
+  totalLimitValue: number;
+  totalWithdrawLimitValue: number;
+  interestRate: number;
+  interestRateCET: number;
+  interestInstallmentRate: number;
+  interestInstallmentRateCET: number;
+  interestInstallmentFine: number;
 }
 
 export interface AccountDetailsInfoProps {
@@ -58,6 +72,7 @@ export interface AccountDetailsInfoProps {
   paymentHistory?: PaymentHistoryItem[];
   isFromIuPay?: boolean;
   isUserAdded?: boolean;
+  billDetails?: BillDetails;
 }
 
 export interface AccountDetailsProps {
@@ -89,14 +104,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
   }, [data.paymentHistory, historyReverse]);
 
   const formatDate = useCallback((date: string) => {
-    const splitDate = date.split('-');
-
-    const formattedDate = new Date(
-      Number(splitDate[0]),
-      Number(splitDate[1]) - 1,
-    );
-
-    return format(formattedDate, 'MMMM yyyy', { locale: ptBR });
+    return formatStringDate(date);
   }, []);
 
   return (
@@ -153,13 +161,15 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
           </CardHolderCard>
         </CardHolderContainer>
 
-        <BlockView>
-          <ViewAccountDetailsButton onPress={() => setModalOpen(!modalOpen)}>
-            <ViewAccountDetailsButtonText>
-              Ver detalhes da conta
-            </ViewAccountDetailsButtonText>
-          </ViewAccountDetailsButton>
-        </BlockView>
+        {data.billDetails && (
+          <BlockView>
+            <ViewAccountDetailsButton onPress={() => setModalOpen(!modalOpen)}>
+              <ViewAccountDetailsButtonText>
+                Ver detalhes da conta
+              </ViewAccountDetailsButtonText>
+            </ViewAccountDetailsButton>
+          </BlockView>
+        )}
 
         <PaymentHistoryContainer>
           <PaymentHistoryTitle>Histórico de Pagamentos</PaymentHistoryTitle>
@@ -187,16 +197,32 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
           </PaymentHistoryData>
         </PaymentHistoryContainer>
       </Container>
-      <AccountDetailsModal
-        isOpen={modalOpen}
-        title="Detalhes da conta"
-        renderMobile={false}
-        onClickClose={() => setModalOpen(false)}
-        companyName={data.companyName}
-        cnpj={data.cnpj}
-        cardNumber={data.cardNumber}
-        clientName={data.cardHolderName}
-      />
+      {data.billDetails && (
+        <AccountDetailsModal
+          isOpen={modalOpen}
+          title="Detalhes da conta"
+          renderMobile={false}
+          onClickClose={() => setModalOpen(false)}
+          companyName={data.companyName}
+          cnpj={data.cnpj}
+          cardNumber={data.cardNumber}
+          clientName={data.cardHolderName}
+          dueDate={data.billDetails.dueDate}
+          emissionDate={data.billDetails.emissionDate}
+          month={data.billDetails.billDate}
+          minimumPaymentValue={data.billDetails.minimumPaymentValue}
+          value={data.billDetails.value}
+          totalLimit={data.billDetails.totalLimitValue}
+          totalWithdrawLimit={data.billDetails.totalWithdrawLimitValue}
+          interestRate={data.billDetails.interestRate}
+          interestRateCET={data.billDetails.interestRateCET}
+          interestInstallmentRate={data.billDetails.interestInstallmentRate}
+          interestInstallmentRateCET={
+            data.billDetails.interestInstallmentRateCET
+          }
+          interestInstallmentFine={data.billDetails.interestInstallmentFine}
+        />
+      )}
     </WrapperView>
   );
 };

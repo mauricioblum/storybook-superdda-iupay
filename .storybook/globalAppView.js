@@ -6,6 +6,6 @@ export default makeDecorator({
   name: 'withGlobalAppView',
   parameterName: 'appView',
   wrapper: (storyFn, context, { parameters }) => {
-      return <AppView>{storyFn(context)}</AppView>;
+      return <AppView bgColor={parameters && parameters.bgColor || '#fed487'}>{storyFn(context)}</AppView>;
   }
 });

@@ -122,5 +122,6 @@ export const BeneficiaryCard = () => (
     imageHeight={number('Image Height', 30)}
     type={select('Card Type', ['Account', 'Monthly'], 'Account')}
     onSwitchChange={(value) => alert(`Changed to ${value}`)}
+    isActive
   />
 );

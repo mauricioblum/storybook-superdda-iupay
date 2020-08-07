@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
-export default function AppView({ children }) {
+export default function AppView({ children, bgColor }) {
+  const appStyles = bgColor ? {...style.app, backgroundColor: bgColor} : {...style.app};
   return (
     <View style={style.container}>
-      <View style={style.app}>
+      <View style={appStyles}>
        {children}
       </View>
     </View>
@@ -14,10 +15,12 @@ export default function AppView({ children }) {
 
 AppView.defaultProps = {
   children: null,
+  bgColor: undefined,
 };
 
 AppView.propTypes = {
   children: PropTypes.node,
+  bgColor: PropTypes.string,
 };
 
 const style = {

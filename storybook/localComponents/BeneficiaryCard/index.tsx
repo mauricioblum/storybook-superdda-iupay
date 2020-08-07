@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { Switch } from 'react-native-switch';
 import type { StyleProp, ViewStyle } from 'react-native';
 import NumberFormat from 'react-number-format';
@@ -22,13 +22,13 @@ import {
 
 type CardType = 'Account' | 'Monthly';
 
-interface BeneficiaryCardProps {
+export interface BeneficiaryCardProps {
+  isActive: boolean;
   barColor?: string;
   cardTitle?: string;
   cardTextColor?: string;
   containerStyle?: StyleProp<ViewStyle>;
   cnpj?: string;
-  isActive?: boolean;
   imageWidth?: number;
   imageHeight?: number;
   limitValue?: number;
@@ -60,7 +60,7 @@ export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
     width: imageWidth || 90,
     height: imageHeight || 30,
   };
-  const [isEnabled, setIsEnabled] = useState(isActive || false);
+  const [isEnabled, setIsEnabled] = useState(isActive);
 
   const handleSwitchChange = useCallback(
     (value: boolean) => {
@@ -73,6 +73,10 @@ export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
   const cardTypeText = useMemo(() => {
     return type === 'Account' ? 'Conta' : 'Mensalidade';
   }, [type]);
+
+  useEffect(() => {
+    setIsEnabled(isActive);
+  }, [isActive]);
 
   return (
     <Container style={containerStyle}>

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { withKnobs, number, boolean, text, date } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { callback } from '../../helpers/callback';
+
 import { AccountDetails } from '../../localComponents/AccountDetails';
 
 export default {
@@ -11,6 +12,7 @@ export default {
   parameters: {
     jsx: { skip: 1 },
     appView: { disable: false },
+    info: { propTables: [AccountDetails] },
   },
 };
 

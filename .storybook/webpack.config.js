@@ -1,3 +1,5 @@
+const path = require("path")
+
 module.exports = {
   module: {
     rules: [
@@ -22,6 +24,11 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        include: path.resolve(__dirname, '../'),
       },
     ],
   },

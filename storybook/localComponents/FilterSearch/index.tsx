@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  View,
   TextInput,
   TextInputKeyPressEventData,
   NativeSyntheticEvent,
@@ -28,7 +27,7 @@ export interface FilterSearchProps {
 }
 
 export const FilterSearch: React.FC<FilterSearchProps> = ({
-  disabled = false,
+  // disabled = false,
   orderText = 'Ordernar por',
   searchValue,
   onClickAsc,
@@ -100,5 +99,3 @@ export const FilterSearch: React.FC<FilterSearchProps> = ({
     </Container>
   );
 };
-
-export default FilterSearch;

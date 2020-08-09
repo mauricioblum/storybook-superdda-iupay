@@ -7,8 +7,6 @@ import { StyleSheet, View } from 'react-native';
 
 import { Card } from 'react-native-superdda-iupay';
 
-import studentImg from './assets/images/student.png';
-
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
     'NunitoSans-Bold': require('./assets/fonts/NunitoSans-Bold.ttf'),
@@ -28,7 +26,6 @@ export default function App(): JSX.Element {
         <StatusBar style="auto" />
         <Card
           type="netflix"
-          dueDate="Vencendo hoje, 23 JUL"
           isDue
           cnpj="99.999.0001/99"
           text="This is a sample text"
@@ -38,7 +35,7 @@ export default function App(): JSX.Element {
 
         <Card
           type="lightBill"
-          dueDate="25 JUL"
+          dueDate={new Date()}
           cnpj="99.999.0001/99"
           isPaid
           text="Bandeira Amarela"

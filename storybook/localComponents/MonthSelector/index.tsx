@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useLayoutEffect,
 } from 'react';
-import { ScrollView, View, LayoutChangeEvent } from 'react-native';
+import { ScrollView, LayoutChangeEvent } from 'react-native';
 import { getMonth } from 'date-fns';
 
 import { Container, MonthButton, MonthText } from './styles';

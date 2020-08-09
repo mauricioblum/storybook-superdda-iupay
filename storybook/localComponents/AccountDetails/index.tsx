@@ -38,8 +38,8 @@ import {
   UserCheck,
   UserX,
 } from '../Icons';
-import AccountDetailsModal from '../AccountDetailsModal';
-import { formatStringDate } from '../../helpers/formatDate';
+import { AccountDetailsModal } from '../AccountDetailsModal';
+import { formatStringDate } from '../utils/formatDate';
 
 export interface PaymentHistoryItem {
   date: string;
@@ -76,7 +76,9 @@ export interface AccountDetailsInfoProps {
 }
 
 export interface AccountDetailsProps {
+  /** Account info data to be displayed */
   data: AccountDetailsInfoProps;
+  /** Payment history table months reversed or not. */
   historyReverse?: boolean;
   onClickBack?: () => void;
   onClickOptions?: () => void;
@@ -88,7 +90,6 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
   onClickBack,
   onClickOptions,
   onClickViewCard,
-  onClickViewAccountDetails,
   data,
   historyReverse,
 }) => {
@@ -226,5 +227,3 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
     </WrapperView>
   );
 };
-
-export default AccountDetails;

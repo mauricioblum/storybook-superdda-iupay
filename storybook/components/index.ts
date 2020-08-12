@@ -6,3 +6,4 @@ export * from './FeaturedCard';
 export * from './MonthSelector';
 export * from './AccountDetails';
 export * from './FilterSearch';
+export * from './Tabs';

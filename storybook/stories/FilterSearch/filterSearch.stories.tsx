@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { View, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { callback } from '../../helpers/callback';
 import { FilterSearch } from '../../components/FilterSearch';
 import {
   BeneficiaryCard,
@@ -15,6 +13,7 @@ export default {
   parameters: {
     jsx: { skip: 0 },
     appView: { bgColor: '#f7f5f4' },
+    info: { propTables: [FilterSearch] },
   },
 };
 

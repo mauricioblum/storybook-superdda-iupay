@@ -5,5 +5,5 @@ import { withInfo } from "@storybook/addon-info";
 import { jsxDecorator } from 'storybook-addon-jsx';
 
 addDecorator(withGlobalAppView);
-addDecorator(withInfo);
 addDecorator(jsxDecorator);
+addDecorator(withInfo);

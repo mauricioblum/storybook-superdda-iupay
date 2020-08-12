@@ -11,7 +11,7 @@ import {
   Card,
   FeaturedCard as FeatureCardComponent,
   BeneficiaryCard as BeneficiaryCardComponent,
-} from '../../localComponents';
+} from '../../components';
 
 export default {
   title: 'Cards',

@@ -13,7 +13,7 @@
 // import AppView from './AppView';
 
 // import { Card } from 'react-native-superdda-iupay';
-// import { Card as LocalCard } from '../localComponents';
+// import { Card as LocalCard } from '../components';
 
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 

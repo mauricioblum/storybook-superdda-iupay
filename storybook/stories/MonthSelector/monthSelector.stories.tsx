@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { callback } from '../../helpers/callback';
-import { MonthSelector } from '../../localComponents/MonthSelector';
+import { MonthSelector } from '../../components/MonthSelector';
 
 export default {
   title: 'MonthSelector',

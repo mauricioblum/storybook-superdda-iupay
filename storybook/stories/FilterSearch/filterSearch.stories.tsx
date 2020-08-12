@@ -3,11 +3,11 @@ import { View, ScrollView } from 'react-native';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { callback } from '../../helpers/callback';
-import { FilterSearch } from '../../localComponents/FilterSearch';
+import { FilterSearch } from '../../components/FilterSearch';
 import {
   BeneficiaryCard,
   BeneficiaryCardProps,
-} from '../../localComponents/BeneficiaryCard';
+} from '../../components/BeneficiaryCard';
 
 export default {
   title: 'FilterSearch',

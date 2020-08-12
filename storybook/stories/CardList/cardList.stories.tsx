@@ -10,7 +10,7 @@ import {
   object,
 } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { CardList } from '../../localComponents';
+import { CardList } from '../../components';
 import { callback } from '../../helpers/callback';
 
 export default {

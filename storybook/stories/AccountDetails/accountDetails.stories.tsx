@@ -4,7 +4,7 @@ import { withKnobs, number, boolean, text, date } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { callback } from '../../helpers/callback';
 
-import { AccountDetails } from '../../localComponents/AccountDetails';
+import { AccountDetails } from '../../components/AccountDetails';
 
 export default {
   title: 'AccountDetails',

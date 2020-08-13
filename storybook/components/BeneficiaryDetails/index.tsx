@@ -20,8 +20,8 @@ import {
   CardHolderText,
   CardHolderButton,
   CardHolderButtonText,
-  ViewAccountDetailsButton,
-  ViewAccountDetailsButtonText,
+  ViewBeneficiaryDetailsButton,
+  ViewBeneficiaryDetailsButtonText,
   PaymentHistoryContainer,
   PaymentHistoryTitle,
   PaymentHistoryData,
@@ -38,7 +38,7 @@ import {
   UserCheck,
   UserX,
 } from '../Icons';
-import { AccountDetailsModal } from '../AccountDetailsModal';
+import { BeneficiaryDetailsModal } from '../BeneficiaryDetailsModal';
 import { formatStringDate } from '../utils/formatDate';
 
 export interface PaymentHistoryItem {
@@ -61,7 +61,7 @@ export interface BillDetails {
   interestInstallmentFine: number;
 }
 
-export interface AccountDetailsInfoProps {
+export interface BeneficiaryDetailsInfoProps {
   companyName?: string;
   companyLogo?: string;
   cnpj?: string;
@@ -75,18 +75,18 @@ export interface AccountDetailsInfoProps {
   billDetails?: BillDetails;
 }
 
-export interface AccountDetailsProps {
-  /** Account info data to be displayed */
-  data: AccountDetailsInfoProps;
+export interface BeneficiaryDetailsProps {
+  /** Beneficiary info data to be displayed */
+  data: BeneficiaryDetailsInfoProps;
   /** Payment history table months reversed or not. */
   historyReverse?: boolean;
   onClickBack?: () => void;
   onClickOptions?: () => void;
   onClickViewCard?: () => void;
-  onClickViewAccountDetails?: () => void;
+  onClickViewBeneficiaryDetails?: () => void;
 }
 
-export const AccountDetails: React.FC<AccountDetailsProps> = ({
+export const BeneficiaryDetails: React.FC<BeneficiaryDetailsProps> = ({
   onClickBack,
   onClickOptions,
   onClickViewCard,
@@ -164,11 +164,13 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
 
         {data.billDetails && (
           <BlockView>
-            <ViewAccountDetailsButton onPress={() => setModalOpen(!modalOpen)}>
-              <ViewAccountDetailsButtonText>
+            <ViewBeneficiaryDetailsButton
+              onPress={() => setModalOpen(!modalOpen)}
+            >
+              <ViewBeneficiaryDetailsButtonText>
                 Ver detalhes da conta
-              </ViewAccountDetailsButtonText>
-            </ViewAccountDetailsButton>
+              </ViewBeneficiaryDetailsButtonText>
+            </ViewBeneficiaryDetailsButton>
           </BlockView>
         )}
 
@@ -199,7 +201,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = ({
         </PaymentHistoryContainer>
       </Container>
       {data.billDetails && (
-        <AccountDetailsModal
+        <BeneficiaryDetailsModal
           isOpen={modalOpen}
           title="Detalhes da conta"
           renderMobile={false}

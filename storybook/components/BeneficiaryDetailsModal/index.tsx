@@ -19,7 +19,7 @@ import {
 } from './styles';
 import { formatMonthDate, formatStringDate } from '../utils/formatDate';
 
-export interface AccountDetailsModalProps {
+export interface BeneficiaryDetailsModalProps {
   title?: string;
   companyName?: string;
   cnpj?: string;
@@ -42,7 +42,7 @@ export interface AccountDetailsModalProps {
   renderMobile: boolean;
 }
 
-const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
+const renderModal = (props: BeneficiaryDetailsModalProps): JSX.Element => {
   const {
     isOpen,
     title,
@@ -178,7 +178,7 @@ const renderModal = (props: AccountDetailsModalProps): JSX.Element => {
   );
 };
 
-export const AccountDetailsModal: React.FC<AccountDetailsModalProps> = (
+export const BeneficiaryDetailsModal: React.FC<BeneficiaryDetailsModalProps> = (
   props,
 ) => {
   const { renderMobile, isOpen, title } = props;

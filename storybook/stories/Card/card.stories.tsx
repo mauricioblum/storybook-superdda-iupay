@@ -112,6 +112,12 @@ export const BeneficiaryCard = () => (
     cardTextColor={color('Card Text Color', '#727272')}
     text={text('Card Text', 'Débito automático no dia do vencimento')}
     barColor={color('Bar Color', '#999')}
+    switchStyle={{
+      backgroundActive: color('Switch Bg Active Color', '#f9a06d'),
+      backgroundInactive: color('Switch Bg Inactive Color', '#b3b3b3'),
+      circleActiveColor: color('Switch Circle Active Color', '#f78733'),
+      circleInActiveColor: color('Switch Circle Inactive Color', '#717171'),
+    }}
     limitValue={number('Limit Value', 300)}
     limitValueText={text('Limit Value Text', 'Valor Limite')}
     logo={text(

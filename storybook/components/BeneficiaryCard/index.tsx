@@ -37,6 +37,12 @@ export interface BeneficiaryCardProps {
   text?: string;
   type?: CardType;
   onSwitchChange?: (value: boolean) => void;
+  switchStyle?: {
+    backgroundActive: string;
+    backgroundInactive: string;
+    circleActiveColor: string;
+    circleInActiveColor: string;
+  };
 }
 
 export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
@@ -55,6 +61,7 @@ export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
   text,
   type,
   onSwitchChange,
+  switchStyle,
 }) => {
   const logoStyle = {
     width: imageWidth || 90,
@@ -73,6 +80,17 @@ export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
   const cardTypeText = useMemo(() => {
     return type === 'Account' ? 'Conta' : 'Mensalidade';
   }, [type]);
+
+  const switchColors = useMemo(() => {
+    return (
+      switchStyle || {
+        backgroundActive: '#f9a06d',
+        backgroundInactive: '#b3b3b3',
+        circleActiveColor: '#f78733',
+        circleInActiveColor: '#717171',
+      }
+    );
+  }, [switchStyle]);
 
   useEffect(() => {
     setIsEnabled(isActive);
@@ -126,10 +144,10 @@ export const BeneficiaryCard: React.FC<BeneficiaryCardProps> = ({
             circleSize={15}
             barHeight={7}
             circleBorderWidth={0}
-            backgroundActive="#f9a06d"
-            backgroundInactive="#b3b3b3"
-            circleActiveColor="#f78733"
-            circleInActiveColor="#717171"
+            backgroundActive={switchColors.backgroundActive}
+            backgroundInactive={switchColors.backgroundInactive}
+            circleActiveColor={switchColors.circleActiveColor}
+            circleInActiveColor={switchColors.circleInActiveColor}
             changeValueImmediately
             innerCircleStyle={{
               alignItems: 'center',

@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { withKnobs, number, boolean, text, date } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { callback } from '../../helpers/callback';
 
-import { AccountDetails } from '../../components/AccountDetails';
+import { BeneficiaryDetails } from '../../components/BeneficiaryDetails';
 
 export default {
-  title: 'AccountDetails',
+  title: 'BeneficiaryDetails',
   decorators: [withKnobs],
   parameters: {
     jsx: { skip: 1 },
     appView: { disable: false },
-    info: { propTables: [AccountDetails] },
+    info: { propTables: [BeneficiaryDetails] },
   },
 };
 
@@ -48,7 +46,7 @@ export const Default = () => {
   return (
     <>
       <View style={{ width: '100%', height: 48, backgroundColor: '#4d4d4d' }} />
-      <AccountDetails
+      <BeneficiaryDetails
         data={{
           companyLogo: text(
             'Company Logo',

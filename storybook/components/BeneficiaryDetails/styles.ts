@@ -112,7 +112,7 @@ export const CardHolderButtonText = styled(CardHolderText)`
   color: #f78c49;
 `;
 
-export const ViewAccountDetailsButton = styled.TouchableOpacity.attrs({
+export const ViewBeneficiaryDetailsButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.9,
 })`
   width: 100%;
@@ -124,7 +124,7 @@ export const ViewAccountDetailsButton = styled.TouchableOpacity.attrs({
   justify-content: center;
 `;
 
-export const ViewAccountDetailsButtonText = styled.Text`
+export const ViewBeneficiaryDetailsButtonText = styled.Text`
   font-family: 'NunitoSans-Bold';
   font-size: 15px;
   color: #ffffff;

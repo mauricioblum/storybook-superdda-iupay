@@ -69,7 +69,7 @@ export const DefaultCard: React.FC<CardProps> = ({
             )}
             <CardTitle>{cardTitle}</CardTitle>
           </CardTitleContainer>
-          <DueDateText isDue={isDue}>{formattedDate}</DueDateText>
+          <DueDateText isDue={isDue ? 1 : 0}>{formattedDate}</DueDateText>
         </CardHeader>
         <CardBody>
           <BetweenRow>

@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 interface CustomProps {
   color?: string;
-  isDue?: boolean;
+  isDue?: number;
 }
 
 export const Container = styled.View`
@@ -67,7 +67,7 @@ export const Logo = styled.Image``;
 
 export const DueDateText = styled.Text<CustomProps>`
   font-family: ${(props): string =>
-    props.isDue ? 'NunitoSans-Bold' : 'NunitoSans-SemiBold'};
+    props.isDue === 1 ? 'NunitoSans-Bold' : 'NunitoSans-SemiBold'};
   font-size: ${(props): string => (props.isDue ? '14px' : '13px')};
   line-height: 17px;
   color: ${(props): string => (props.isDue ? '#e30613' : '#7a7a7b')};

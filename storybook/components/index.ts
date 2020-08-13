@@ -4,6 +4,6 @@ export * from './CardListItem';
 export * from './BeneficiaryCard';
 export * from './FeaturedCard';
 export * from './MonthSelector';
-export * from './AccountDetails';
+export * from './BeneficiaryDetails';
 export * from './FilterSearch';
 export * from './Tabs';

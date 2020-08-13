@@ -35,7 +35,7 @@ const beneficiaryCards: BeneficiaryCardProps[] = [
     type: 'Account',
   },
   {
-    barColor: '#999',
+    barColor: '#ff9000',
     cardTextColor: 'darkgreen',
     cardTitle: 'BERJ',
     cnpj: '99.999.999.0001-99',
@@ -51,7 +51,7 @@ const beneficiaryCards: BeneficiaryCardProps[] = [
     type: 'Account',
   },
   {
-    barColor: '#999',
+    barColor: '#fff911',
     isActive: true,
     cardTextColor: '#727272',
     cardTitle: 'CERJ',
@@ -67,7 +67,7 @@ const beneficiaryCards: BeneficiaryCardProps[] = [
     type: 'Monthly',
   },
   {
-    barColor: '#999',
+    barColor: '#ff0000',
     cardTextColor: 'red',
     cardTitle: 'AES SUL',
     cnpj: '99.999.999.0001-99',
@@ -137,7 +137,8 @@ export const Default = () => {
 
   return (
     <ScrollView
-      style={{ flex: 1, marginTop: 20, width: '100%' }}
+      style={{ marginTop: 20, width: '100%' }}
+      contentContainerStyle={{ flex: 1 }}
       showsVerticalScrollIndicator={false}
     >
       <FilterSearch

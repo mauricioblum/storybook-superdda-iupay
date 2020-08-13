@@ -3,8 +3,8 @@ export default {
   parameters: {
     jsx: { disable: true },
     appView: { disable: true },
-    knobs: { disable: true },
-    actions: { disable: true },
+    knobs: { disabled: true },
+    actions: { disabled: true },
     info: {
       inline: true,
       source: false,
